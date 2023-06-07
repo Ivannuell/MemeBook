@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 62.5%;
+}
+
+nav {
+    border: 1px solid red;
+    width: 100vw;
+    height: 10vh;
+    margin-bottom: 1rem;
+}
+
+.main-contents {
+    border: 1px solid black;
+    width: 100vw;
+    height: 80vh;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.content {
+    border: 1px solid blue;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    /* height: auto; */
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.owner {
+    border: 1px dashed blue;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 2rem;
+}
+
+.item {
+    border: 1px dashed blue;
+    margin-bottom: 0.5rem;
+    /* height: auto; */
+    flex-grow: 1;
+}
+
+.visit-original {
+    border: 1px dashed blue;
+    
+    height: 2rem;
+    width: 50%;
+}
+

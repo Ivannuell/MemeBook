@@ -14,7 +14,7 @@ nav {
 
 nav h2 {
     font-size: 1.5rem;
-    padding: 1rem;
+    margin: 0.3rem;
 }
 
 .main-contents {
@@ -67,5 +67,22 @@ nav h2 {
     /* text-align: center; */
     height: 2rem;
     width: 50%;
+}
+
+/* Filter Feature */
+.filter-choice {
+    border: 1px solid blue;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0.5rem;
+    height: 4rem; 
+    overflow-x: auto;
+}
+
+.choices {
+    display: inline-block;
+    border: 1px dashed blue;
+    width: auto;
+    height: 100%;
 }
 

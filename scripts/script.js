@@ -1,45 +1,59 @@
 // const item = document.querySelector('.item');
-const author = document.querySelector('.owner');
+const author = document.querySelector(".owner");
 
-const mainContent = document.querySelector('.main-contents');
-let memeData;
+const mainContent = document.querySelector(".main-contents");
 
 function createAnotherItem(memeData, i) {
-    const item = document.createElement('div');
-    item.classList.add('content');
+    const item = document.createElement("div");
+    item.classList.add("content");
     item.innerHTML = `
-        <div class="owner">/${memeData.memes[i].author}</div>
+        <div class="owner">/${memeData.memes[i].subreddit}</div>
         <div class="item"> <img src="${memeData.memes[i].url}"></div>
         <div class="visit-original"><a href="#">Visit original post</a></div>
-    `
+    `;
     mainContent.appendChild(item);
 }
 
-async function fetchMeme() {
-    await fetch('https://meme-api.com/gimme/5')
+let subReddits = ['memes', 'dankmemes', 'me_irl', 'terriblefacebookmemes'];
+function randomNum() {
+    return Math.floor(Math.random() * subReddits.length);
+}
+
+
+let apiLink = `https://meme-api.com/gimme/${subReddits[randomNum()]}/3`;
+let count = 3;
+function fetchMeme() {
+    fetch(apiLink)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             // console.log(data);
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < count; i++) {
                 createAnotherItem(data, i);
             }
-            
-        })
-
+        });
 }
 
-
-mainContent.onscroll = function() {
-    var distanceScrolled = mainContent.scrollTop;
-    console.log(distanceScrolled);
-    if (distanceScrolled < (121)) {
-      fetchMeme();
+let lastScrollTop = 0;
+mainContent.onscroll = (e) => {
+    if (mainContent.scrollTop < lastScrollTop) {
+        console.log('LastScrollTop: ', lastScrollTop);
+        console.log('ScrollTop: ', mainContent.scrollTop);
+        return;
     }
-}
+
+    lastScrollTop = mainContent.scrollTop <= 0 ? 0 : mainContent.scrollTop;
+    if (
+        mainContent.scrollTop + mainContent.offsetHeight >=
+        (mainContent.scrollHeight - 100)
+    ) {
+        console.log("maxScrollHieght: ",mainContent.scrollHeight);
+        apiLink = `https://meme-api.com/gimme/${subReddits[randomNum()]}/3`
+        count = 1;
+        fetchMeme();
+        return;
+    }
+};
 
 fetchMeme();
-
-
-

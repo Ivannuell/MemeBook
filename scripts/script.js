@@ -1,19 +1,45 @@
-const item = document.querySelector('.item');
-const owner = document.querySelector('.owner');
+// const item = document.querySelector('.item');
+const author = document.querySelector('.owner');
 
-function createAnotherItem() {
+const mainContent = document.querySelector('.main-contents');
+let memeData;
+
+function createAnotherItem(memeData, i) {
     const item = document.createElement('div');
-    item.classList.add('item');
-    return item;
+    item.classList.add('content');
+    item.innerHTML = `
+        <div class="owner">/${memeData.memes[i].author}</div>
+        <div class="item"> <img src="${memeData.memes[i].url}"></div>
+        <div class="visit-original"><a href="#">Visit original post</a></div>
+    `
+    mainContent.appendChild(item);
+}
+
+async function fetchMeme() {
+    await fetch('https://meme-api.com/gimme/5')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            // console.log(data);
+            for (let i = 0; i < 10; i++) {
+                createAnotherItem(data, i);
+            }
+            
+        })
+
 }
 
 
-fetch('https://meme-api.com/gimme/4')
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        console.log(data);
-        item.innerHTML = `<img src="${data.memes[0].url}">`;
-        owner.innerHTML = `<p>Owner: ${data.memes[0].author}</p>`;
-    })
+mainContent.onscroll = function() {
+    var distanceScrolled = mainContent.scrollTop;
+    console.log(distanceScrolled);
+    if (distanceScrolled < (121)) {
+      fetchMeme();
+    }
+}
+
+fetchMeme();
+
+
+

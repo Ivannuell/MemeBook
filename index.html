@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/normalize.css">
+    <script src="https://cdn.jsdelivr.net/gh/nastyox/Rando.js@master/code/plain-javascript/2.0.0/rando-min.js"></script>
     <title>MemeBook</title>
 </head>
 <body>
     <header>
         <nav>
-            <h2>Filter Subreddit sources:</h2>
-            <div class="filter-choice">
-                <!-- <div class="choices">
-                    <button onclick="check()" class="filter-bttn"></button>
-                </div> -->
-
+            <h2>Subreddit sources</h2>
+            <div class="filter-container">
+                <div class="filter-choice"></div>
+                <button onclick="check(event)" class="filter-change">&#8801;</button>
             </div>
+           
         </nav>
     </header>
     <main>

@@ -1,9 +1,22 @@
-// const item = document.querySelector('.item');
 const author = document.querySelector(".owner");
 
 const mainContent = document.querySelector(".main-contents");
 const filterCon = document.querySelector(".filter-choice");
-let subReddits = ["memes", "dankmemes", "me_irl", "terriblefacebookmemes"];
+let subReddits = [
+    "memes",
+    "dankmemes",
+    "me_irl",
+    "terriblefacebookmemes",
+    "PampamilyangPaoLUL",
+];
+
+let filteredSubReddits = [
+    "memes",
+    "dankmemes",
+    "me_irl",
+    "terriblefacebookmemes",
+    "PampamilyangPaoLUL",
+];
 
 function randomNum() {
     return Math.floor(Math.random() * subReddits.length);
@@ -20,18 +33,18 @@ function createAnotherItem(memeData, i) {
     mainContent.appendChild(item);
 }
 
-function createAnotherFilter(subreddit) {
-    const filter = document.createElement("div");
-    filter.classList.add("choices");
-    filter.innerHTML = `
-        <button onclick="check()" class="filter-bttn">/${subreddit}</button>
-    `;
-    filterCon.appendChild(filter);
-}
+// function createAnotherFilter(subreddit) {
+//     const filter = document.createElement("div");
+//     filter.classList.add("choices");
+//     filter.innerHTML = `
+//         <button onclick="check()" class="filter-bttn">/${subreddit}</button>
+//     `;
+//     filterCon.appendChild(filter);
+// }
 
-
-
-let apiLink = `https://meme-api.com/gimme/${subReddits[randomNum()]}/3`;
+let apiLink = `https://meme-api.com/gimme/${
+    filteredSubReddits[rando(filteredSubReddits.length)]
+}/3`;
 let count = 3;
 function fetchMeme() {
     fetch(apiLink)
@@ -57,23 +70,45 @@ mainContent.onscroll = (e) => {
     lastScrollTop = mainContent.scrollTop <= 0 ? 0 : mainContent.scrollTop;
     if (
         mainContent.scrollTop + mainContent.offsetHeight >=
-        mainContent.scrollHeight - 100
+        mainContent.scrollHeight - 160
     ) {
         console.log("maxScrollHieght: ", mainContent.scrollHeight);
-        apiLink = `https://meme-api.com/gimme/${subReddits[randomNum()]}/3`;
-        count = 1;
+        apiLink = `https://meme-api.com/gimme/${filteredSubReddits[rando(filteredSubReddits.length)]}/3`;
+        count = 3;
         fetchMeme();
         return;
     }
 };
 
-for(let i = 0; i < subReddits.length; i++) {
-    createAnotherFilter(subReddits[i]);
+function fillFilteredSubReddits() {
+    filteredSubReddits.forEach((text, index) => {
+        const button = document.createElement("button");
+        button.classList.add("filter-bttn");
+        button.innerHTML = text;
+        button.dataset.index = index; // Assign a unique index to each button
+        filterCon.appendChild(button);
+    });
 }
 
+fillFilteredSubReddits();
 
+filterCon.addEventListener("click", function (event) {
+    
+    if (event.target.tagName === "BUTTON") {
+        const button = event.target;
+        const innerText = button.innerHTML;
+        const buttonIndex = button.dataset.index;
+        console.log("Button Text:", innerText);
+        console.log("Button Index:", buttonIndex);
+
+        filterCon.removeChild(button);
+        filteredSubReddits = filteredSubReddits.filter((element) => element !== innerText);
+        console.log(filteredSubReddits);
+        while(mainContent.firstChild){
+            mainContent.removeChild(mainContent.firstChild);
+        }
+        count = 3;
+        fetchMeme();
+    }
+});
 fetchMeme();
-
-function check() {
-    alert("Button worked");
-}

@@ -78,38 +78,54 @@ nav h2 {
 }
 
 /* Filter Feature */
+.filter-container {
+    display: flex;
+}
+
 .filter-choice {
     /* border: 1px solid blue; */
-    /* margin-left: 10px;
-    margin-right: 10px; */
+    margin-left: 10px;
+    /* margin-right: 10px; */
     padding: 0.5rem;
-    height: 4rem;
-    width: 100%;
+    padding-bottom: 1rem;
+    height: inherit;
+    width: 86%;
     overflow-y:hidden;
     /* overflow-x:auto; */
     white-space: nowrap;
     display: flex;
 }
 
-.choices {
+/* .choices {
     flex-wrap: wrap;
-    /* border: 1px solid blue; */
     background-color: rgba(255,255,255,0.6);
     box-shadow: 1px 1px 10px #0008;
     margin-right: 0.8rem;
     border-radius: 1rem;
     padding: 2px;
-    /* width: 100px; */
     width: fit-content;
     display:block;
     flex-shrink: 0;
-}
+} */
 
 .filter-bttn {
-    /* border: 1px solid red; */
+    border: 1px solid red;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 3px ;
+    margin: 0.2rem;
     width: inherit;
+    max-width: fit-content;
     height: 100%;
     border: none;
     font-size: 1rem;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.filter-change {
+    border: 1px solid yellow;
+    width: 10%;
+    font-size: 3rem;
+    align-content: center;
+    background-color: transparent;
+    border: none;
 }

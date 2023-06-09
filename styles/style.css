@@ -7,22 +7,31 @@
         sans-serif;
 }
 
+body {
+    display: block;
+}
+
 nav {
     /* border: 1px solid red; */
     width: 100vw;
     height: 10vh;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
+    background-color: rgba(0,0,0,0.4);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 nav h2 {
     font-size: 1.5rem;
     margin: 0.3rem;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 1px 1px 5px black;
 }
 
 .main-contents {
     /* border: 1px solid black; */
     width: 100vw;
-    height: 80vh;
+    height: 90vh;
     padding: 1rem;
     overflow-y: auto;
 }
@@ -33,7 +42,7 @@ nav h2 {
     border-radius: 0.5rem;
     padding: 0.5rem;
     margin-bottom: 1rem;
-    height: auto;
+    height: max-content;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -85,6 +94,7 @@ nav h2 {
 .choices {
     flex-wrap: wrap;
     /* border: 1px solid blue; */
+    background-color: rgba(255,255,255,0.6);
     box-shadow: 1px 1px 10px #0008;
     margin-right: 0.8rem;
     border-radius: 1rem;
@@ -101,4 +111,5 @@ nav h2 {
     height: 100%;
     border: none;
     font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0);
 }

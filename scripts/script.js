@@ -68,13 +68,10 @@ mainContent.onscroll = (e) => {
     }
 
     lastScrollTop = mainContent.scrollTop <= 0 ? 0 : mainContent.scrollTop;
-    if (
-        mainContent.scrollTop + mainContent.offsetHeight >=
-        mainContent.scrollHeight - 160
-    ) {
+    if (mainContent.scrollTop + mainContent.offsetHeight+100 >= mainContent.scrollHeight) {
         console.log("maxScrollHieght: ", mainContent.scrollHeight);
         apiLink = `https://meme-api.com/gimme/${filteredSubReddits[rando(filteredSubReddits.length)]}/3`;
-        count = 3;
+        count = 1;
         fetchMeme();
         return;
     }
@@ -90,7 +87,7 @@ function fillFilteredSubReddits() {
     });
 }
 
-fillFilteredSubReddits();
+
 
 filterCon.addEventListener("click", function (event) {
     
@@ -104,11 +101,14 @@ filterCon.addEventListener("click", function (event) {
         filterCon.removeChild(button);
         filteredSubReddits = filteredSubReddits.filter((element) => element !== innerText);
         console.log(filteredSubReddits);
+        mainContent.scrollTop = 0;
         while(mainContent.firstChild){
-            mainContent.removeChild(mainContent.firstChild);
+            mainContent.removeChild(mainContent.lastChild);
         }
         count = 3;
         fetchMeme();
     }
 });
+
+fillFilteredSubReddits();
 fetchMeme();

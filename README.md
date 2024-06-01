@@ -1,3 +1,3 @@
 # MemeBook
 
-Yeah, reddit happened and free APIs are now history.
+Yeah, reddit happened and free APIs are now part of history.
